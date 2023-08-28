@@ -29,6 +29,22 @@ model User {
     updatedAt DateTime @updatedAt
     stripePurchasedId String?
     subsciptionEnds DateTime?
-    // course Course[]
+    course Course[]
 
+}
+
+model Course {
+    id String @id @default(uuid())
+    option String
+    title String
+    videos   String[]
+    images String[]
+    category String
+    description String? 
+    language  String?
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId String 
+    @@index([userId])
 }
